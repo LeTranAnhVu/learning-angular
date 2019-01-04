@@ -1,0 +1,48 @@
+<section class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <ng-content select=".heading"></ng-content>
+    </div>
+    <div class="panel-body">
+      <ng-content select=".body"></ng-content>
+    </div>
+  </div>
+  <!-- course title -->
+  <ng-container *ngIf="courses.length > 0; then coursesList else noCourse"></ng-container>
+  <ng-template #coursesList>
+    <h2>Courses are available</h2>
+    <ul class="list-group">
+        <li *ngFor="let course of courses" class="list-group-item">
+          {{course}}
+          <button (click)="onRemove(course)" class="btn btn-danger">X</button>
+          <button (click)="onEdit(course)" class="btn btn-warning">E</button>
+        </li>
+      </ul>
+  </ng-template>
+  <ng-template #noCourse>
+    There is no coures yet!
+  </ng-template>
+  <!-- end course title -->
+
+  <!-- add course -->
+  <input [(ngModel)]="newCourse" type="text" placeholder="add new course">
+  <button (click)="onAdd()"  class="btn btn-primary">add new</button>
+
+
+  <hr>
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a [class.active]="viewMode == 'me'" class="nav-link" (click)="viewMode = 'me'">Me views</a>
+    </li>
+    <li class="nav-item">
+      <a [class.active]="viewMode == 'you'" class="nav-link" (click)="viewMode = 'you'">You views</a>
+    </li>
+  </ul>
+  <div [ngSwitch]="viewMode">
+    <p *ngSwitchCase="'me'">me conents</p>
+    <p *ngSwitchCase="'you'">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda architecto repellendus sed, beatae ex quod
+      eius molestiae? Repellendus possimus voluptates nostrum deleniti, nihil minima vero, dignissimos expedita
+      architecto eligendi laborum!</p>
+    <p *ngSwitchDefault>otherwise</p>
+  </div>
+</section>
