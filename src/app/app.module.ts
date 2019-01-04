@@ -4,12 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ChildComponent } from './components/child/child.component';
 import { InputFormatDirective } from './directives/input-format.directive';
+import { TdfFormComponent } from './components/tdf-form/tdf-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChildComponent,
-    InputFormatDirective
+    InputFormatDirective,
+    TdfFormComponent
   ],
   imports: [
     BrowserModule,

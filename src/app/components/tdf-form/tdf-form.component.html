@@ -1,0 +1,11 @@
+<form>
+  <div class="form-group">
+    <label for="username">User Name</label>
+    <input ngModel #ten="ngModel" name="userName" (change)="log(ten)" type="text" class="form-control" id="username" placeholder="letrananhvu">
+  </div>
+  <div class="form-group">
+    <label for="comment01">Comments</label>
+    <textarea class="form-control" id="comment01" rows="5"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary ml-auto my-btn-block">Add</button>
+</form>
