@@ -1,11 +1,96 @@
-<form>
-  <div class="form-group">
-    <label for="username">User Name</label>
-    <input ngModel #ten="ngModel" name="userName" (change)="log(ten)" type="text" class="form-control" id="username" placeholder="letrananhvu">
+<form #form01="ngForm" (ngSubmit)="onSubmit(form01)">
+  <!-- profile group -->
+  <div ngModelGroup="profile" #profile="ngModelGroup">
+    <!-- username -->
+    <div class="form-group">
+      <label for="username">User Name</label>
+      <input
+        required
+        minlength="4"
+        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
+        ngModel
+        #userName="ngModel"
+        name="userName"
+        (focus)="log(userName)"
+        type="text"
+        class="form-control"
+        id="username">
+        <!-- validate -->
+       <div class="alert alert-danger mt-1" *ngIf="userName.touched && !userName.valid">
+         <p class="mb-0" *ngIf="userName.errors.required">
+            First Name must be filled
+          </p>
+         <p class="mb-0" *ngIf="userName.errors.minlength">
+            Username must be at least {{userName.errors.minlength.requiredLength}} characters
+          </p>
+         <p class="mb-0" *ngIf="userName.errors.pattern">
+            The Username must contain 6 or more characters that are of at least one number, and one uppercase and lowercase letter
+          </p>
+        </div>
+        <!-- end validate -->
+    </div>
+    <!-- end username -->
   </div>
+  <!-- end profile group -->
+
+  <!-- comment -->
   <div class="form-group">
     <label for="comment01">Comments</label>
-    <textarea class="form-control" id="comment01" rows="5"></textarea>
+    <textarea
+      required
+      ngModel
+      #comment="ngModel"
+      name="comment"
+      (change)="log(comment)"
+      class="form-control"
+      id="comment01"
+      rows="5">
+    </textarea>
+    <div class="alert alert-danger mt-1" *ngIf="comment.touched && !comment.valid">
+        <p class="mb-0" *ngIf="comment.errors.required">
+          Please leave your comment
+        </p>
+    </div>
   </div>
-  <button type="submit" class="btn btn-primary ml-auto my-btn-block">Add</button>
+  <!-- end comment -->
+
+  <!-- drop down -->
+  <div class="form-group">
+      <label for="dropdown01">Contact method</label>
+      <select
+        ngModel
+        name="contactMethod"
+        class="form-control"
+        id="dropdown01">
+        <option
+          *ngFor="let contact of contactMethods; let i=index"
+          [selected]="contact.id == 1"
+          [value]="contact.id">
+          {{contact.name }}
+        </option>
+      </select>
+    </div>
+  <!-- end drop down -->
+
+  <!-- check box -->
+  <div class="form-check">
+    <input
+    ngModel
+    name="isMailing"
+    type="checkbox"
+    class="form-check-input"
+    id="checkbox01">
+    <label class="form-check-label" for="checkbox01">Mailing it</label>
+  </div>
+  <!-- end check box -->
+
+
+  <!-- dianostig -->
+  <p>{{form01.value | json}}</p>
+  <!-- end dianostic -->
+  <button
+    type="submit"
+    class="btn btn-primary ml-auto my-btn-block" [disabled]="!form01.valid">
+    Add
+  </button>
 </form>
