@@ -5,13 +5,15 @@ import { AppComponent } from './app.component';
 import { ChildComponent } from './components/child/child.component';
 import { InputFormatDirective } from './directives/input-format.directive';
 import { TdfFormComponent } from './components/tdf-form/tdf-form.component';
+import { CheckAgeFormComponent } from './components/check-age-form/check-age-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChildComponent,
     InputFormatDirective,
-    TdfFormComponent
+    TdfFormComponent,
+    CheckAgeFormComponent
   ],
   imports: [
     BrowserModule,

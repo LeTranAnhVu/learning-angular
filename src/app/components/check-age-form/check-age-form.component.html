@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-6">
+    <form #temForm="ngForm">
+      <div class="form-group">
+        <label for="ngaySinh1">ngay sinh</label>
+        <input
+          [(ngModel)]="birthDay"
+          name="birthDay"
+          type="date" class="form-control" id="ngaySinh1">
+      </div>
+    </form>
+
+    <div>
+      <span>ngày sinh:   </span>
+      <span><b>{{birthDay | date: 'dd/MM/yyyy'}}</b></span>
+    </div>
+    <hr>
+    <div>
+      <span>tuoi: </span>
+      <span><b>{{age}}</b></span>
+    </div>
+  </div>
+</div>
