@@ -1,0 +1,30 @@
+
+
+
+@keyframes ro
+  0%
+    transform: rotate(0deg)
+    border-left-color: #e74c3c
+    border-right-color: #e74c3c
+  50%
+    transform: rotate(360deg)
+    border-left-color: #f1c40f
+    border-right-color: #f1c40f
+
+.spinner
+  display: flex
+  // justify-content: center
+  align-items: center
+  span
+    display: inline-block
+    width: 20px
+    height: 20px
+    border-top: 2px transparent solid
+    border-bottom: 2px transparent solid
+    border-left: 3px #e74c3c solid
+    border-right: 3px #e74c3c solid
+    border-radius: 50%
+    animation: ro 1s infinite
+
+
+

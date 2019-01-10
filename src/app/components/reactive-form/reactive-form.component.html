@@ -1,0 +1,59 @@
+<h1>Session: Reactive form</h1>
+<!-- <div class="spinner"></div> -->
+<form [formGroup]="form">
+  <div formGroupName="profile">
+    <div class="form-group">
+      <label for="email1">Email address</label>
+      <input formControlName="username" type="email" class="form-control" id="email1" autocomplete="none">
+      <small *ngIf="username.pending" class="spinner mt-1">
+        <span class="mr-2"></span>
+        Checking ...
+      </small>
+      <div class="message mt-1">
+        <div *ngIf="username.touched && username.errors" class="alert alert-danger">
+          <div *ngIf="username.errors.required">Username must be required !</div>
+          <div *ngIf="username.errors.haveSpace">Username must NOT have space</div>
+          <div *ngIf="username.errors.existedUser">Username had already existed !</div>
+        </div>
+        <div *ngIf="username.touched && username.valid" class="alert alert-success">
+          You can use this username.
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password1">Password</label>
+      <input formControlName="password" type="password" class="form-control" id="password1">
+    </div>
+  </div>
+  <label>Phone
+    <button class="btn btn-sm btn-primary" (click)="addPhoneForm()">+</button>
+  </label>
+  <div formArrayName="phoneForms">
+    <div *ngFor="let phone of phoneForms.controls; let i = index" class="form-group">
+      <div class="row" [formGroupName]="i">
+        <div class="col-md-3">
+          <input formControlName="area" type="text" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <input formControlName="prefix" type="text" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <input formControlName="line" type="text" class="form-control">
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-danger btn-sm" (click)="removePhoneForm(i)">X</button>
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+  <div class="form-check">
+    <input formControlName="check" type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+  </div>
+  <div>{{form.value | json}}</div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
