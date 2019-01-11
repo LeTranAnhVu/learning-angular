@@ -6,6 +6,7 @@
         <input
           [(ngModel)]="birthDay"
           name="birthDay"
+          (change)="checkAgeIsOver18()"
           type="date" class="form-control" id="ngaySinh1">
       </div>
     </form>
@@ -18,6 +19,10 @@
     <div>
       <span>tuoi: </span>
       <span><b>{{age}}</b></span>
+    </div>
+    <div>
+      <div *ngIf="isOver === true " class="alert alert-success">đủ tuổi</div>
+      <div *ngIf="isOver ===false " class="alert alert-danger">ko đủ tuổi</div>
     </div>
   </div>
 </div>
