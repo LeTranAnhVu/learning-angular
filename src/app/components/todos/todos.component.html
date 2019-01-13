@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="form-group mb-4">
+    <input #input (keyup.enter)="create(input)" type="text" class="form-control">
+  </div>
+
+  <ul class="list-group">
+    <li [class.isDone]="item.completed" class="list-group-item item" *ngFor="let item of todoList; let i = index">
+        <div class="input-group" (click)="update(item, i)">
+            <p class="mb-0">{{item.title}}</p>
+            <div class="input-group-append ml-auto">
+              <button (click)="delete(i)" appStopPropagation class="btn btn-outline-secondary" type="button">X</button>
+            </div>
+          </div>
+    </li>
+  </ul>
+</div>
