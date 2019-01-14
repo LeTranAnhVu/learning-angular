@@ -29,7 +29,7 @@ export class Child2Component implements OnInit, OnDestroy {
       this.route.queryParamMap
     ]).subscribe(combinedResult => {
       const id = combinedResult[0].get('id'); // paramMap
-      const page = combinedResult[1].get('page'); //queryParamMap
+      const page = combinedResult[1].get('page'); // queryParamMap
       console.log('id:', id, '-', 'page:', page);
     });
   }
