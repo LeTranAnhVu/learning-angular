@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 
 
 @Component({
@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.sass']
 })
-export class ChildComponent implements OnInit {
+export class ChildComponent implements OnInit, OnDestroy {
   @Output() change = new EventEmitter();
   constructor() { }
   courses = ['angular', 'react', 'nodejs', 'firebase', 'vanilla js'];
@@ -42,6 +42,10 @@ export class ChildComponent implements OnInit {
     })
   }
   ngOnInit() {
+    console.log('ngOnInit from child');
+  }
+  ngOnDestroy() {
+    console.log('destroy from child');
   }
   changeView(target) {
     this.viewMode = target;
