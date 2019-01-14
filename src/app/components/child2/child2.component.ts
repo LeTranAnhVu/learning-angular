@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
 import { Observable, combineLatest } from 'rxjs';
 
 
@@ -10,7 +10,7 @@ import { Observable, combineLatest } from 'rxjs';
 })
 export class Child2Component implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     console.log('ngOnInit from child2');
@@ -31,9 +31,16 @@ export class Child2Component implements OnInit, OnDestroy {
       const id = combinedResult[0].get('id'); // paramMap
       const page = combinedResult[1].get('page'); //queryParamMap
       console.log('id:', id, '-', 'page:', page);
-    })
+    });
+  }
 
-
+  navigation() {
+    this.router.navigate(['/child'], {
+      queryParams: {
+        page: 2,
+        order: 'oldest'
+      }
+    });
 
   }
   ngOnDestroy() {
