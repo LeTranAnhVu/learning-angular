@@ -15,6 +15,6 @@ export class AppComponent {
 
   }
   onChildChange() {
-    console.log("child changed");
+    console.log('child changed');
   }
 }

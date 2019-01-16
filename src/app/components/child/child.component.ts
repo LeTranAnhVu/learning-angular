@@ -22,16 +22,16 @@ export class ChildComponent implements OnInit {
     }
   }
   onRemove(whichCourse) {
-    if (confirm("Are you sure to delete " + name)) {
-      console.log("Implement delete functionality here");
+    if (confirm('Are you sure to delete ' + name)) {
+      console.log('Implement delete functionality here');
       this.courses = this.courses.filter((course) => {
         return (course !== whichCourse);
-      })
+      });
     }
 
   }
   onEdit(editedCourse) {
-    let newCourseName: string = prompt('Please enter ');
+    const newCourseName: string = prompt('Please enter ');
     this.courses = this.courses.map((course) => {
       if (course === editedCourse) {
         course = newCourseName;
@@ -39,7 +39,7 @@ export class ChildComponent implements OnInit {
         // do nothing
       }
       return course;
-    })
+    });
   }
   ngOnInit() {
   }
